@@ -1,0 +1,21 @@
+.signupMain {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background:
+    linear-gradient(rgba(10, 6, 20, 0.75), rgba(10, 6, 20, 0.75)),
+    url("../assets/loginBG.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.signupTitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #f4f0ff;
+  margin-bottom: 1.5rem;
+}

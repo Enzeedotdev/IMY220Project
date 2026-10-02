@@ -1,0 +1,59 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  width: 100%;
+  background: rgba(24, 14, 48, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2.5rem 1.75rem;
+}
+
+.profileAvatar {
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profileName {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.7rem;
+  color: #f4f0ff;
+}
+
+.profileUsername {
+  color: #8577ad;
+  font-size: 1rem;
+}
+
+.profileBio {
+  margin: 0.5rem 0 0;
+  color: #cfc6ec;
+}
+
+.profileStats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.profileStat {
+  color: #cfc6ec;
+  font-size: 0.95rem;
+}
+
+.profileStat strong {
+  color: #f4f0ff;
+}

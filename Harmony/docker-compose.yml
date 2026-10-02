@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./backend
+    container_name: harmony-backend
+    environment:
+      # Atlas connection string, read from Harmony/.env
+      MONGO_URI: ${MONGO_URI}
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build: ./frontend
+    container_name: harmony-frontend
+    environment:
+      VITE_API_TARGET: http://backend:3001
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

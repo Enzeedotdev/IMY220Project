@@ -1,0 +1,42 @@
+.searchInput {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.65rem 1rem;
+  background: rgba(10, 6, 24, 0.5);
+  border: 1px solid rgba(139, 111, 232, 0.35);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.searchInput:focus-within {
+  border-color: #8b6fe8;
+}
+
+.searchInputIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.searchInputField {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f4f0ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+}
+
+.searchInputField::placeholder {
+  color: #8577ad;
+}
+
+.searchInputField::-webkit-search-cancel-button {
+  filter: invert(1) opacity(0.6);
+}

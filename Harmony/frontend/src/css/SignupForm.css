@@ -1,0 +1,68 @@
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  max-width: 360px;
+  padding: 2.5rem 2.25rem;
+  background: rgba(24, 14, 48, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.signupFormLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b8aee0;
+}
+
+.signupFormInput {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(139, 111, 232, 0.35);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(10, 6, 24, 0.5);
+  color: #f4f0ff;
+  transition: border-color 0.2s ease;
+}
+
+.signupFormInput::placeholder {
+  color: #8577ad;
+}
+
+.signupFormInput:focus {
+  outline: none;
+  border-color: #8b6fe8;
+}
+
+.signupFormError {
+  color: #ff6b9d;
+  font-size: 0.85rem;
+  background: rgba(255, 107, 157, 0.1);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.signupFormButton {
+  padding: 0.75rem 1.4rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 8px;
+  background: #6c3ce9;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.signupFormButton:hover {
+  background: #7d4ff5;
+}

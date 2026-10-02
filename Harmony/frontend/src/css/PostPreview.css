@@ -1,0 +1,56 @@
+.postPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: rgba(24, 14, 48, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.postPreviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.postPreviewAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postPreviewAuthor {
+  font-weight: 600;
+  color: #f4f0ff;
+}
+
+.postPreviewHeader:hover .postPreviewAuthor {
+  color: #cfc6ec;
+}
+
+.postPreviewLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.postPreviewImage {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.postPreviewCaption {
+  margin: 0;
+  color: #cfc6ec;
+}
+
+.postPreviewLikes {
+  color: #8577ad;
+  font-size: 0.9rem;
+}

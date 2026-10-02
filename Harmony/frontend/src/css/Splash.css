@@ -1,0 +1,81 @@
+.splashMain {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
+  background:
+    linear-gradient(rgba(10, 6, 20, 0.72), rgba(10, 6, 20, 0.72)),
+    url("../assets/loginBG.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.splashContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 480px;
+}
+
+.splashTitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0;
+  color: #f4f0ff;
+}
+
+.splashSubtitle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: #cfc6ec;
+  margin: 1.25rem 0 2rem;
+}
+
+.splashActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.splashButton {
+  padding: 0.75rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.splashButtonPrimary {
+  border: none;
+  background: #6c3ce9;
+  color: white;
+}
+
+.splashButtonPrimary:hover {
+  background: #7d4ff5;
+}
+
+.splashButtonSecondary {
+  border: 1px solid rgba(139, 111, 232, 0.5);
+  background: rgba(24, 14, 48, 0.4);
+  color: #f4f0ff;
+}
+
+.splashButtonSecondary:hover {
+  background: rgba(139, 111, 232, 0.18);
+}
+
+.splashHero {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}

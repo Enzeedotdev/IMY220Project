@@ -1,0 +1,39 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(13, 8, 32, 0.95);
+  border-bottom: 1px solid rgba(139, 111, 232, 0.35);
+}
+
+.navBrand {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #f4f0ff;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navLink {
+  color: #cfc6ec;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navLink:hover {
+  background: rgba(139, 111, 232, 0.18);
+  color: #f4f0ff;
+}

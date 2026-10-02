@@ -1,0 +1,201 @@
+IMY 220 Project 2026
+Photo Sharing Website
+Deliverable 2
+Instructions
+- This deliverable must be completed by 07:30 on 2 October as indicated on
+ClickUP.
+- You must demo your deliverable submission in the demo sessions in order to
+be awarded marks.
+- You must demo your deliverable using Docker. Running the project locally will
+not earn you any marks.
+- No late / email submissions will be accepted.
+We recommend you constantly refer to the overall spec as well as your individual
+deliverable specs to make sure your project meets all of the requirements by the end.
+Make sure you also continuously test your project as you add new functionality to
+make sure everything keeps working as expected.
+Part 1: MongoDB Database & API
+By now, as you have been building the skeleton structure for your functionality, you
+should have a good idea of the type and quantity of data that you will need to pass
+around your components, and what kinds of data are attached to a user, a post, an
+album, etc.
+Think carefully about the relationships between your various collections and use
+them to structure your database so that it’s easy to connect them. For example, a
+registered user owns posts, which would have hashtags, likes and comments in
+them. A user can create posts and albums, and leave comments on posts. You’ll
+need to think about how you will store and pass around this data so that it is easy to
+Create, Read, Update, Delete (CRUD) data in your frontend code. Your database
+should have at least 2 users, 2 posts, 1 album, and 1 user with a friend.
+You should fully implement your backend before you think about integrating it into
+your frontend. You should make use of Express to create routes for each CRUD
+action for a specific piece of data, you should already have stubbed out your
+authentication endpoints. Tools like Postman (postman.com) or Hoppscotch
+(hoppscotch.io) can be used to test your backend code to ensure that it works as
+expected. Expand on these routes by adding error handling, and more complex
+functionality until you have a fully implemented API that you can call within your
+frontend React code to help you pass data from the frontend, to the backend
+database, and vice versa. You should be making use of JSON in your requests and
+responses. You should ideally encapsulate this database communication either as
+exported functions or as an exported class. What we mean by this is that you should
+define CRUD actions for each collection separately and call upon them when you
+need to do something. This follows the DRY principle of coding and separation of
+concerns. This API code (with all of your MongoDB communication) should live in
+your /backend folder. In this way, your backend (database) communication is
+handled by your API, and your React code focuses on rendering UI, client-side user
+interaction, and client-side validation and calls your API. You should never interact
+with your MongoDB database from your React code, all CRUD actions should take
+place in your API. Make sure you include a working MongoDB connection string
+when submitting. If you include a non-working connection string and the markers
+cannot access your MongoDB database, you will lose marks. You can either use a
+MongoDB Atlas instance (MongoDB Atlas) - which is preferred as you don’t have to
+worry about setting up and managing the database - or a self-hosted version of
+MongoDB using Docker (MongoDB & Containers); if you decide to go this route, you
+will need to provide your data and a way to import the data into the self-hosted
+instance.
+Part 2: Linking Frontend and Backend
+Once your API is fully implemented and working as intended, start implementing the
+integration between your backend and your React frontend. You would achieve this
+by making use of the API routes that you defined in your backend and calling them by
+using the Fetch API (Fetch API on MDN) in the required components/pages (or any
+alternative method from the lectures that makes use of a promise).
+By the end of this deliverable, you should have no dummy data anywhere in your
+components. You should make use of the relative API routes to receive data, render
+this data in your components, and be able to send data to your backend from your
+React components/pages and have it updated in the respective document.
+Essentially, you are performing all CRUD operations via the backend that you created.
+You should start fully fleshing out your core functionality. You do not have to have all
+of the error handling implemented yet, but the basic functionality listed below should
+work.
+The following needs to be implemented on your frontend, with the respective API
+routes available on your backend:
+- User Management: Log in , sign up, and log out.
+- Profile Management: View and edit your own profile.
+- User interaction: View other users’ profiles, and send or accept friend
+requests. You can also unfriend other users.
+- Posts: Create a new post, add an image, text description, and hashtags. The
+creator of a post must have the ability to edit its description and hashtags, as
+well as delete the post.
+- Albums: Users must be able to create an album with a name, description, and
+hashtags. They must be able to edit the album's name, description, and
+hashtags, as well as add or remove posts from their own albums. Users must
+also be able to delete their own albums.
+- Activity: Provide a local and global feed. Users must be able to view albums,
+posts, comment on posts, and report posts.
+- Admin: Administrator accounts must be able to edit and delete all activity,
+posts, user accounts, and add new reasons for reporting posts.
+There is a specific functionality that each of these pages/components should consist
+of. You should refer back to the main project specifications to find out what these are
+and cater for them.
+You do not need to implement any functionality related to admin users.
+Part 3: Basic Tailwind Styling
+For this deliverable, you are required to have started to implement the general theme
+of your website. This refers to the styling you decided upon in D0 in terms of the
+colour scheme, general layout (i.e., placement of elements), and fonts. You are not
+required to have it finalised, but there should be no default HTML or TailwindCSS
+fonts, no default Bootstrap components, and your colour scheme should be
+implemented. Your styling should be visible across all of your pages and
+components.
+Everything should be created by you and no templates are allowed. This includes
+pre-built components you can find online or from component libraries.
+Submission Instructions
+Submit the following to ClickUP before the deadline:
+Place the following into a ZIP archive called Position_Surname_D3.zip.
+Double-check that all required files are included before you submit.
+- A text file containing a link to your GitHub repository.
+- All files / code excluding node_modules.
+- Your Dockerfile and all commands used to create the image and container.
+Include the commands in a file called README.txt for easy access.
+- Your MongoDB atlas connection string to your complete database - or
+commands and data required to self-host the database.
+
+
+
+
+Additonal Instructions 
+
+Here is each instruction expanded into what it means and what to check before you submit.
+
+## General instructions
+
+- **Deadline, 07:30 on 2 October (ClickUP).** Submit before then, because there are no late or emailed submissions. Upload a working version early and replace it if you improve it.
+- **Demo to get marks.** Your submission is only marked if you demo it in a session, so be ready to show every feature live.
+- **Docker only.** Run the demo from the container, not `npm run dev`. Build and run your image from scratch at least once before submitting to be sure it works.
+- **Refer to the overall spec.** Each deliverable spec is a subset of the main project spec. Details such as what a profile page must contain are in the main spec, so check it for the fine print.
+- **Test as you go.** Re-test old features after adding new ones, since changes often break earlier work.
+
+## Part 1: MongoDB database and API
+
+**Database design**
+- Plan the relationships between collections:
+  - A user owns posts, and posts hold hashtags, likes and comments.
+  - Users also create albums and leave comments on posts.
+- Decide for each relationship whether to embed (comments inside a post) or reference (an `ownerId` on a post). References are usually easier to update, and embedding is easier to read.
+- Typical collections are `users`, `posts`, `albums`, `comments`, and possibly `reports` and `friendRequests`.
+- Friends need a representation, such as a `friends` array of user IDs plus pending requests (sent and received).
+- **Seed data minimum:** 2 users, 2 posts, 1 album, and 1 user with a friend. Write a seed script or export your data so markers see the same thing.
+
+**Express API**
+- Build routes for Create, Read, Update and Delete on each piece of data. For example, `POST/GET/PUT/DELETE /api/posts` and `/api/albums`, plus user routes, friend request routes and comments.
+- Your authentication endpoints should already be stubbed (login, signup, logout). Make them work.
+- Add error handling: missing fields, invalid IDs, not found (404), unauthorised (401/403), and server errors, all with proper status codes and JSON messages.
+- Use JSON for every request and response.
+- Test each route in Postman or Hoppscotch before touching the frontend.
+
+**Code structure**
+- Encapsulate database communication as exported functions or a class, with CRUD functions per collection, such as `createPost()` and `getPostById()`. This is the DRY and separation-of-concerns requirement.
+- All MongoDB code lives in `/backend`.
+- React never talks to MongoDB directly. It only calls your API.
+
+**Connection string**
+- Include a working connection string. A dead one costs marks because markers can't reach your data.
+- Atlas is preferred. Check that your IP access list allows connections from anywhere (`0.0.0.0/0`), or the markers' machines will be blocked.
+- If you self-host MongoDB in Docker instead, you must supply your data and import instructions.
+
+## Part 2: Linking frontend and backend
+
+- Use the Fetch API (or another promise-based method from the lectures) with relative API routes like `/api/posts`.
+- **No dummy data anywhere.** Remove all hardcoded arrays and mock objects from your components, which should render only what the API returns.
+- Every action must round-trip, meaning the frontend sends data, the backend updates the document, and the UI reflects it.
+
+**Features required**
+
+| Area | What must work |
+|---|---|
+| User management | Sign up, log in, log out |
+| Profile | View and edit your own profile |
+| Interaction | View other users' profiles, send and accept friend requests, unfriend |
+| Posts | Create (image, text description, hashtags). The creator can edit the description and hashtags and can delete the post |
+| Albums | Create with name, description and hashtags. Edit those fields. Add or remove your posts. Delete your own albums |
+| Activity | Local feed and global feed. View albums and posts, comment, report posts |
+| Admin | **Not required** for this deliverable |
+
+Full error handling isn't expected yet, but the basic functionality must work. Make sure the permission rules hold: only the creator can edit or delete a post, and only the owner can change an album.
+
+## Part 3: Basic Tailwind styling
+
+- Implement the theme from D0: colour scheme, layout (element placement) and fonts.
+- It doesn't need to be final, but it must be visible on every page and component.
+- Do not use any of these:
+  - default HTML or Tailwind fonts (load your chosen fonts),
+  - default Bootstrap components,
+  - templates or pre-built components from libraries or the internet.
+- Everything must be built by you.
+
+## Submission instructions
+
+Zip everything into `Position_Surname_D3.zip` (replace Position and Surname with yours; the "D3" suffix doesn't match "Deliverable 2", so check ClickUP). It must contain:
+
+1. **A text file with your GitHub repository link.** Make sure the repo is accessible to markers and contains your latest code.
+2. **All files and code except `node_modules`.** Check that `package.json` files, `.env` files (or equivalent config) and the `/backend` folder are included.
+3. **Dockerfile plus `README.txt` with all commands** used to build the image and start the container, for example `docker build -t imy220 .` and `docker run -p 3000:3000 imy220`. Write them so a marker can copy and paste them.
+4. **Your MongoDB Atlas connection string,** or the self-hosting commands and data.
+
+## Suggested order for the next few hours
+
+1. Confirm the backend routes work in Postman.
+2. Finish integrating the frontend features and remove dummy data.
+3. Check that the styling appears on every page.
+4. Build and run in Docker from a clean state.
+5. Check the connection string and the seed data.
+6. Zip, double-check contents, and upload well before 07:30.
+
+If you tell me which part is least finished, I can help you prioritise or work through it with you.
