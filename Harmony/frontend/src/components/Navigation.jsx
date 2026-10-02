@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../css/Navigation.css"
 
 function Navigation (){
+    const navigate = useNavigate()
+
+    async function logout() {
+        await fetch("/api/logout", { method: "POST" })
+        localStorage.removeItem("user")
+        navigate("/")
+    }
 
     return(
 
@@ -10,6 +17,7 @@ function Navigation (){
             <div className="navLinks">
                 <Link to="/home" className="navLink">Home</Link>
                 <Link to="/profile" className="navLink">Profile</Link>
+                <button onClick={logout} className="navLink">Log Out</button>
             </div>
         </nav>
 
