@@ -5,7 +5,7 @@ function FriendsList({ friends }) {
     return (
         <div className="friendsList">
             {friends.map(friend => (
-                <FriendCard key={friend.id} friend={friend} />
+                <FriendCard key={friend._id} friend={friend} />
             ))}
         </div>
     )

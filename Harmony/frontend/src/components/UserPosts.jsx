@@ -5,7 +5,7 @@ function UserPosts({ posts }) {
     return (
         <div className="userPosts">
             {posts.map(post => (
-                <PostPreview key={post.id} post={post} />
+                <PostPreview key={post._id} post={post} />
             ))}
         </div>
     )

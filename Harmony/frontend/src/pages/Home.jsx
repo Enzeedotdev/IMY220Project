@@ -1,48 +1,48 @@
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import Navigation from "../components/Navigation.jsx"
 import PostPreview from "../components/PostPreview.jsx"
-import SearchInput from "../components/SearchInput.jsx"
-import imagePlaceholder from "../assets/imagePlaceholder.jpg"
 import "../css/Home.css"
 
-const posts = [
-    {
-        id: 1,
-        author: "alex.rodriguez",
-        caption: "Golden hour never disappoints",
-        imageUrl: imagePlaceholder,
-        likes: 42,
-        timestamp: "2h ago",
-    },
-    {
-        id: 2,
-        author: "jamie.smith",
-        caption: "Weekend hike done right",
-        imageUrl: imagePlaceholder,
-        likes: 108,
-        timestamp: "5h ago",
-    },
-    {
-        id: 3,
-        author: "morgan.lee",
-        caption: "Coffee first, thoughts later",
-        imageUrl: imagePlaceholder,
-        likes: 15,
-        timestamp: "1d ago",
-    },
-]
-
 function Home () {
+    const user = JSON.parse(localStorage.getItem("user"))
+    const [feed, setFeed] = useState("local")
+    const [posts, setPosts] = useState([])
+    const [albums, setAlbums] = useState([])
+
+    useEffect(() => {
+        let url = "/api/feed/global"
+        if (feed === "local") {
+            url = "/api/feed/local/" + user._id
+        }
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                setPosts(data.posts)
+                setAlbums(data.albums)
+            })
+    }, [feed])
+
     return (
         <>
             <Navigation/>
             <div className="homeMain">
                 <div className="homeHeader">
                     <h1 className="homeTitle">Your feed</h1>
-                    <SearchInput placeholder="Search posts..." />
                 </div>
+                <button onClick={() => setFeed("local")}>Local</button>
+                <button onClick={() => setFeed("global")}>Global</button>
                 <div className="homeFeed">
+                    {albums.map(album => (
+                        <Link key={album._id} to={`/album/${album._id}`}>
+                            <h3>{album.name}</h3>
+                            <p>{album.description}</p>
+                            <p>by {album.username}</p>
+                        </Link>
+                    ))}
                     {posts.map(post => (
-                        <PostPreview key={post.id} post={post} />
+                        <PostPreview key={post._id} post={post} />
                     ))}
                 </div>
             </div>

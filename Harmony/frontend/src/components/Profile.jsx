@@ -1,17 +1,17 @@
 import profilePlaceholder from "../assets/profilePlaceholder.jpeg"
 import "../css/Profile.css"
 
-function Profile({ user }) {
+function Profile({ user, postsCount }) {
     return (
         <div className="profile">
             <img className="profileAvatar" src={profilePlaceholder} alt={user.username} />
             <div className="profileInfo">
-                <h2 className="profileName">{user.name}</h2>
-                <span className="profileUsername">@{user.username}</span>
+                <h2 className="profileName">{user.username}</h2>
+                <span className="profileUsername">{user.email}</span>
                 <p className="profileBio">{user.bio}</p>
                 <div className="profileStats">
-                    <span className="profileStat"><strong>{user.postsCount}</strong> posts</span>
-                    <span className="profileStat"><strong>{user.friendsCount}</strong> friends</span>
+                    <span className="profileStat"><strong>{postsCount}</strong> posts</span>
+                    <span className="profileStat"><strong>{user.friends.length}</strong> friends</span>
                 </div>
             </div>
         </div>

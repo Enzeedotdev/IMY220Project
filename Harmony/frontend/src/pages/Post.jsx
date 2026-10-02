@@ -1,62 +1,50 @@
-import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
 import Navigation from "../components/Navigation.jsx"
 import Post from "../components/Post.jsx"
 import Comments from "../components/Comments.jsx"
 import EditPostForm from "../components/EditPostForm.jsx"
-import imagePlaceholder from "../assets/imagePlaceholder.jpg"
 import "../css/PostPage.css"
-
-const posts = [
-    {
-        id: 1,
-        author: "alex.rodriguez",
-        caption: "Golden hour never disappoints",
-        imageUrl: imagePlaceholder,
-        likes: 42,
-        timestamp: "2h ago",
-    },
-    {
-        id: 2,
-        author: "jamie.smith",
-        caption: "Weekend hike done right",
-        imageUrl: imagePlaceholder,
-        likes: 108,
-        timestamp: "5h ago",
-    },
-    {
-        id: 3,
-        author: "morgan.lee",
-        caption: "Coffee first, thoughts later",
-        imageUrl: imagePlaceholder,
-        likes: 15,
-        timestamp: "1d ago",
-    },
-]
-
-const comments = [
-    { id: 1, postId: 1, author: "jamie.smith", text: "This is stunning!" },
-    { id: 2, postId: 1, author: "morgan.lee", text: "Love the colors here" },
-    { id: 3, postId: 2, author: "alex.rodriguez", text: "That ridge line is unreal" },
-    { id: 4, postId: 3, author: "jamie.smith", text: "Same energy every morning" },
-]
 
 function PostPage() {
     const { postId } = useParams()
-    const id = Number(postId)
+    const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem("user"))
 
-    let post
-    for (let i = 0; i < posts.length; i++) {
-        if (posts[i].id === id) {
-            post = posts[i]
-            break
-        }
+    const [post, setPost] = useState(null)
+    const [comments, setComments] = useState([])
+    const [reason, setReason] = useState("")
+
+    function loadPost() {
+        fetch("/api/posts/" + postId)
+            .then(response => response.json())
+            .then(data => {
+                setPost(data.post)
+                setComments(data.comments)
+            })
     }
 
-    const postComments = []
-    for (let i = 0; i < comments.length; i++) {
-        if (comments[i].postId === id) {
-            postComments.push(comments[i])
-        }
+    useEffect(() => {
+        loadPost()
+    }, [postId])
+
+    async function deletePost() {
+        await fetch("/api/posts/" + postId, { method: "DELETE" })
+        navigate("/home")
+    }
+
+    async function reportPost(event) {
+        event.preventDefault()
+        await fetch("/api/posts/" + postId + "/report", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reporter: user._id, reason }),
+        })
+        setReason("")
+    }
+
+    if (!post) {
+        return null
     }
 
     return (
@@ -67,11 +55,17 @@ function PostPage() {
                     <div className="postPageLeft">
                         <Post post={post} />
 
-                        <EditPostForm />
+                        {post.owner === user._id && <EditPostForm post={post} onDone={loadPost} />}
+                        {post.owner === user._id && <button onClick={deletePost}>Delete Post</button>}
+
+                        <form onSubmit={reportPost}>
+                            <input type="text" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Reason for reporting" />
+                            <button type="submit">Report Post</button>
+                        </form>
                     </div>
 
                     <div className="postPageRight">
-                        <Comments comments={postComments} />
+                        <Comments comments={comments} postId={postId} onDone={loadPost} />
                     </div>
                 </div>
             </div>

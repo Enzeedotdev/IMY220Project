@@ -6,22 +6,22 @@ import "../css/Post.css"
 function Post({ post }) {
     return (
         <article className="post">
-            <Link to={`/profile/${post.author}`} className="postHeader">
-                <img className="postAvatar" src={profilePlaceholder} alt={post.author} />
+            <Link to={`/profile/${post.owner}`} className="postHeader">
+                <img className="postAvatar" src={profilePlaceholder} alt={post.username} />
                 <div className="postHeaderInfo">
-                    <span className="postAuthor">{post.author}</span>
-                    <span className="postTimestamp">{post.timestamp}</span>
+                    <span className="postAuthor">{post.username}</span>
+                    <span className="postTimestamp">{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
             </Link>
 
-            <Image src={post.imageUrl} alt={post.caption} />
+            <Image src={post.image} alt={post.description} />
 
             <div className="postBody">
                 <p className="postCaption">
-                    <span className="postCaptionAuthor">{post.author}</span>
-                    {post.caption}
+                    <span className="postCaptionAuthor">{post.username}</span>
+                    {post.description}
                 </p>
-                <span className="postLikes">{post.likes} likes</span>
+                <span className="postLikes">{post.hashtags.map(tag => "#" + tag).join(" ")}</span>
             </div>
         </article>
     )
